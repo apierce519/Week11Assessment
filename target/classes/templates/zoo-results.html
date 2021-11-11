@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>View All Things</title>
+</head>
+<body>
+
+	<form>
+	
+		<table>
+		
+			<tr>
+				<th>Zoo ID</th>
+				<th>Zoo Name</th>
+				<th>Zoo Mascot</th>
+				<th>Animal List</th>
+			</tr>
+
+			<tr th:each="currentEntry : ${zoo}">
+				<td th:text="${currentEntry.id}"/>
+					<td th:text = "${currentEntry.name}"/>
+					<td th:text = "${currentEntry.mascot}"/>
+					<td th:text = "${currentEntry.animalList}"/>
+					<td><a th:href="@{/editZoo/{id}(id = ${currentEntry.id})}">Edit</a></td>
+					<td><a th:href="@{/deleteZoo/{id}(id = ${currentEntry.id})}">Delete</a></td>
+			</tr>
+			
+		</table>
+			
+	</form>
+
+	<a href = "../inputZoo">Add a zoo</a>
+	<a href = "../inputAnimal">Add an Animal</a>
+	<a href = "../viewAllZoos"> View all zoos</a>
+	<a href = "../viewAllAnimals"> View all animals</a>
+	
+</body>
+</html>

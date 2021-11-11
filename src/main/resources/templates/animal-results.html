@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>View all animals</title>
+</head>
+<body>
+
+	<form>
+		
+		<table>
+			<tr>
+			
+				<th>ID</th>
+				<th>Name</th>
+				<th>Species</th>
+				<th>Number of legs</th>
+				<th>Has a tail</th>
+				<th>Diet type</th>
+				<th>Favorite Food</th>
+				<th>Medications</th>
+				
+			</tr>
+		
+			<tr th:each = "currentEntry : ${animal}">
+			
+				<td th:text="${currentEntry.id}"/>
+				<td th:text = "${currentEntry.name}"/>
+				<td th:text = "${currentEntry.species}"/>
+				<td th:text = "${currentEntry.numberOfLegs}"/>
+				<td th:text = "${currentEntry.hasTail}"/>
+				<td th:text = "${currentEntry.diet.type}"/>
+				<td th:text = "${currentEntry.diet.favoriteFood}"/>
+				<td th:text = "${currentEntry.diet.medications}"/>
+				<td><a th:href="@{/editAnimal/{id}(id = ${currentEntry.id})}">Edit</a></td>
+				<td><a th:href="@{/deleteAnimal/{id}(id = ${currentEntry.id})}">Delete</a></td>
+				
+			</tr>
+				
+		</table>
+	
+	</form>
+	
+	<a href = "../inputZoo">Add a zoo</a>
+	<a href = "../inputAnimal">Add an Animal</a>
+	<a href = "../viewAllZoos"> View all zoos</a>
+	<a href = "../viewAllAnimals"> View all animals</a>
+	
+</body>
+</html>

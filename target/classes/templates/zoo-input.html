@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add a New Zoo</title>
+</head>
+<script type = "text/javascript">
+
+	function validate(){
+			
+			if(document.zooInput.name.value ==""){
+				alert("Please enter a name.");
+			document.zooInput.name.focus();
+			return false;
+			}
+						
+			return ( true );
+	}
+	
+
+</script>
+<body>
+
+	<form name = "zooInput" onsubmit = "return(validate())" th:object = "${newZoo}" th:action = "@{/updateZoo/{id}(id = ${newZoo.id})}" method = POST>
+	
+		Name:<input name="name" size = "20" th:field="*{name}"><br>
+		Mascot:<input name="mascot" size = "20" th:field = "*{mascot}"><br>
+		Available Animals:<br>
+		<select name = "animalList" multiple = "multiple" size = "6" th:field = "*{animalList}">
+		
+			<option th:each="animal : ${animals}" th:value = "${animal.id}" th:text="${animal.name} + ' | ' + ${animal.species}"></option>
+			
+					<!-- <tr th:each="animal : ${animals}">
+					<td th:text="${animal.name}"/>
+					<td th:text="${animal.species}"/>
+					<td th:text="${animal.numberOfLegs}"/>
+					<td th:text="${animal.hasTail}"/>
+					<td th:text="${animal.diet.type}"/>
+					<td th:text="${animal.diet.favoriteFood}"/>
+					<td th:text="${animal.diet.medications}"/> -->
+		
+		</select>
+		<input name = "submit" type = "submit" value = "Create Zoo"/>
+	</form>
+
+	<a href = "../inputZoo">Add a zoo</a>
+	<a href = "../inputAnimal">Add an Animal</a>
+	<a href = "../viewAllZoos"> View all zoos</a>
+	<a href = "../viewAllAnimals"> View all animals</a>
+</body>
+</html>
